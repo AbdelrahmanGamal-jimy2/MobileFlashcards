@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import {
-    Text,
-    View,
     ScrollView,
-    TouchableOpacity
 } from 'react-native'
+import Deck from "./Deck";
 
 class DeckList extends Component
 {
@@ -15,16 +13,7 @@ class DeckList extends Component
         return(
             <ScrollView>
                 {decks.map((deck)=> 
-                <TouchableOpacity>
-                        <View>
-                            <Text>
-                                {deck.title}
-                            </Text>
-                            <Text>
-                                {deck.questions.length()}
-                            </Text>
-                        </View>
-                </TouchableOpacity>
+                    <Deck></Deck>
                 )}
             </ScrollView>
         )
