@@ -2,11 +2,34 @@ import React, { Component } from "react";
 import {
     Text,
     View,
-    ScrollView,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    StyleSheet
 } from 'react-native'
-
+const styles = StyleSheet.create({
+    textStyle: {
+        fontSize: 30,
+    },
+    centerItem:
+    {
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    btnStyle:
+    {
+        backgroundColor: "#4287f5",
+        borderRadius: 50,
+        width: 200,
+        height:50,
+        margin: 4
+    },
+    inputText:
+    {
+        width:200,
+        height:50,
+        backgroundColor: "#d1d1d1"
+    }
+})
 class NewDeck extends Component
 {
     state ={
@@ -20,18 +43,18 @@ class NewDeck extends Component
     {
         const {input} =this.state
         return(
-            <View>
-                <Text>
+            <View style={[styles.centerItem,{flex: 1}]}>
+                <Text style={[styles.textStyle, {padding: 50}  ]}>
                     What is the title of your new Deck: {this.state.input}
                 </Text>
                 <TextInput
                 value={input}
                 onChangeText={this.handleChange}
-                style={{width:100, height:100}}
+                style={[styles.inputText]}
                 />
                 <View></View>
-                <TouchableOpacity style={{justifyContent: "center", alignItems:"center"}}>
-                    <Text>Create Deck</Text>
+                <TouchableOpacity style={[styles.btnStyle, styles.centerItem]}>
+                    <Text style={{color: "white"}}>Create Deck</Text>
                 </TouchableOpacity>
             </View>
         )

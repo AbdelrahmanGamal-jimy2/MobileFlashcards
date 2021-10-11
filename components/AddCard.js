@@ -3,8 +3,36 @@ import {
     Text,
     View,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    StyleSheet
 } from 'react-native'
+
+const styles = StyleSheet.create({
+    textStyle: {
+        fontSize: 30,
+    },
+    centerItem:
+    {
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    btnStyle:
+    {
+        backgroundColor: "#4287f5",
+        borderRadius: 50,
+        width: 200,
+        height:50,
+        margin: 4
+    },
+    inputText:
+    {
+        width:200,
+        height:50,
+        backgroundColor: "#d1d1d1",
+        margin: 10
+    }
+})
+
 class AddCard extends Component
 {
     state={
@@ -23,22 +51,22 @@ class AddCard extends Component
     {
         const {question,answer} = this.state
         return(
-            <View>
-                <View>
+            <View style={[{flex: 1}, styles.centerItem]}>
+                <View style={[{flex: 2}, styles.centerItem]}>
                     <TextInput
                     value={question}
                     onChangeText={this.handleChangeQuestion}
-                    style={{width:150, height:30, backgroundColor: "purple", margin: 5}}
+                    style={[styles.inputText]}
                     />
                     <TextInput
                     value={answer}
                     onChangeText={this.handleChangeAnswer}
-                    style={{width:150, height:30, backgroundColor: "purple", margin:5}}
+                    style={[styles.inputText]}
                     />
                 </View>
-                <View>
-                    <TouchableOpacity>
-                        <Text>Add Card</Text>
+                <View style={[{flex: 1},styles.centerItem]}>
+                    <TouchableOpacity style={[styles.btnStyle, styles.centerItem]}>
+                        <Text style={{color: "white"}}>Add Card</Text>
                     </TouchableOpacity>
                 </View>
                 <Text>{this.state.question}{this.state.answer}</Text>
