@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Deck from "./components/Deck";
 import StackNav from "./components/StackNav";
 import {FontAwesome} from '@expo/vector-icons'
+import {setLocalNotification} from './utils/api'
 
 
 const Tab = createBottomTabNavigator()
@@ -18,6 +19,10 @@ class  App extends React.Component {
     decks: {
 
     }
+  }
+  componentDidMount()
+  {
+    setLocalNotification()
   }
   updateState = ()=>
   {

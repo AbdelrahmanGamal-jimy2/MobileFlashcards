@@ -6,6 +6,7 @@ import {
     StyleSheet
 } from 'react-native'
 import {getDeck} from '../utils/api'
+import { clearLocalNotification, setLocalNotification } from "../utils/api";
 
 const styles = StyleSheet.create({
     textStyle: {
@@ -45,6 +46,7 @@ class Quiz extends Component
     }
     componentDidMount()
     {
+        clearLocalNotification().then(setLocalNotification)
         const {id}= this.props.route.params
         getDeck(id).then((id)=>this.setState({
             questions: id.questions
