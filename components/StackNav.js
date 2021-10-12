@@ -1,0 +1,24 @@
+import React, { Component } from "react";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import DeckList from "./DeckList";
+import Deck from "./Deck"
+import AddCard from './AddCard'
+import DeckView from "./DeckView";
+
+const Stack = createNativeStackNavigator()
+
+class StackNav extends Component
+{
+    render()
+    {
+        return (
+            <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen name="DeckList"  component={DeckList} />
+                <Stack.Screen name="DeckView"  component={DeckView} />
+                <Stack.Screen name="AddCard"  component={AddCard} />
+            </Stack.Navigator>
+        )
+    }
+}
+export default StackNav

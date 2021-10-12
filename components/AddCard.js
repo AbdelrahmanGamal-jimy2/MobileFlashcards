@@ -6,6 +6,7 @@ import {
     TextInput,
     StyleSheet
 } from 'react-native'
+import {addCardToDeck} from '../utils/api'
 
 const styles = StyleSheet.create({
     textStyle: {
@@ -47,6 +48,15 @@ class AddCard extends Component
     {
         this.setState(()=>({question}))
     }
+    handleAdd = ()=>
+    {
+        console.log(this.props.route.params.id)
+        console.log("here")
+        addCardToDeck({
+            question: this.state.question,
+            answer: this.state.answer
+        }, this.props.route.params.id)
+    }
     render()
     {
         const {question,answer} = this.state
@@ -65,7 +75,7 @@ class AddCard extends Component
                     />
                 </View>
                 <View style={[{flex: 1},styles.centerItem]}>
-                    <TouchableOpacity style={[styles.btnStyle, styles.centerItem]}>
+                    <TouchableOpacity style={[styles.btnStyle, styles.centerItem]} onPress={()=>this.handleAdd() }>
                         <Text style={{color: "white"}}>Add Card</Text>
                     </TouchableOpacity>
                 </View>

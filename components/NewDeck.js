@@ -6,6 +6,9 @@ import {
     TextInput,
     StyleSheet
 } from 'react-native'
+
+import {saveDeckTitle, getDeck} from '../utils/api.js'
+
 const styles = StyleSheet.create({
     textStyle: {
         fontSize: 30,
@@ -39,6 +42,20 @@ class NewDeck extends Component
     {
         this.setState(()=>({input}))
     }
+    handlePress = ()=>
+    {
+        const {input} = this.state
+        if(input)
+        {
+            saveDeckTitle({
+                [input]:
+                {
+                    title: input,
+                    questions: []
+                }
+            }).then(()=> console.log(getDeck(input).then((r)=>console.log(r))))
+        }
+    }
     render()
     {
         const {input} =this.state
@@ -53,7 +70,7 @@ class NewDeck extends Component
                 style={[styles.inputText]}
                 />
                 <View></View>
-                <TouchableOpacity style={[styles.btnStyle, styles.centerItem]}>
+                <TouchableOpacity onPress={this.handlePress} style={[styles.btnStyle, styles.centerItem]}>
                     <Text style={{color: "white"}}>Create Deck</Text>
                 </TouchableOpacity>
             </View>

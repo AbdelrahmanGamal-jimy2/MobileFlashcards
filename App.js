@@ -7,6 +7,7 @@ import AddCard from "./components/AddCard";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Deck from "./components/Deck";
+import StackNav from "./components/StackNav";
 
 
 const Tab = createBottomTabNavigator();
@@ -15,8 +16,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="DeckView" component={DeckView} />
-        <Tab.Screen name="AddCard" component={AddCard} />
+        <Tab.Screen name="StackNav" component={StackNav} />
+        <Tab.Screen name="NewDeck" component={NewDeck} />
       </Tab.Navigator>
     </NavigationContainer>
   );  

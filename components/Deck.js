@@ -26,16 +26,21 @@ const styles = StyleSheet.create({
 })
 class Deck extends Component
 {
+    handlePress =()=>
+    {
+        
+    }
     render()
     {
+        const {navigation} =this.props
         return(
-            <View style={[styles.centerItem], {flex: 1}}>
-                <TouchableOpacity style={[styles.centerItem] }>
+            <View style={[styles.centerItem], {flex: 1, borderColor: "black"}}>
+                <TouchableOpacity style={[styles.centerItem] } onPress={()=>navigation.navigate("DeckView",{title: this.props.title, cards: this.props.cards,navigation})}>
                             <Text style={[styles.textStyle]}>
-                                Deck 1 
+                                {this.props.title}
                             </Text>
                             <Text style={[styles.subText]}>
-                                3 Cards
+                                {this.props.cards}
                             </Text>
                 </TouchableOpacity>
             </View>

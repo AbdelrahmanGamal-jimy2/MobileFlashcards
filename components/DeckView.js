@@ -29,21 +29,24 @@ class DeckView extends Component
     
     render()
     {
+        const {title, cards} =this.props.route.params
+        const {navigation} = this.props
         return(
+
                 <View style={{flex: 1,}}>
                     <View style={{flex: 1, justifyContent:"center", alignItems:"center"}} >
                         <Text style={[styles.textStyle]}>
-                            Deck 1
+                            {title}
                         </Text>
                         <Text style={[styles.textStyle]}>
-                            2 Cards
+                            {cards}
                         </Text>
                     </View>
                     <View style={{flex: 2, justifyContent:"center", alignItems:"center"}}>
                         <TouchableOpacity style={[styles.btnStyle, styles.centerItem]}>
                         <Text style={{color: "white"}}>Start Quiz</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.btnStyle, styles.centerItem]}>
+                        <TouchableOpacity onPress={()=> navigation.navigate("AddCard",{id: title})} style={[styles.btnStyle, styles.centerItem]}>
                             <Text style={{color: "white"}}>AddCard</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.btnStyle, styles.centerItem, {backgroundColor: "white"}]}>
