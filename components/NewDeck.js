@@ -7,7 +7,7 @@ import {
     StyleSheet
 } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
-import {MyContext} from "../App"
+import MyContext from "./appContext"
 
 import {saveDeckTitle, getDeck} from '../utils/api.js'
 
@@ -46,7 +46,6 @@ class NewDeck extends Component
     }
     handlePress = (decks, updateFunc)=>
     {
-        console.log("MY ASS params", updateFunc)
         const {input} = this.state
         if(input)
         {

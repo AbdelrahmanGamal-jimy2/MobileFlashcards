@@ -55,7 +55,6 @@ class AddCard extends Component
             answer: this.state.answer
         }, this.props.route.params.id).then(()=>
         {
-            console.log("HERE")
             this.props.route.params.update()
             this.props.route.params.updateCard()
             this.props.navigation.pop(1)

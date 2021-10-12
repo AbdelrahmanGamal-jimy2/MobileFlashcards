@@ -6,8 +6,8 @@ import StackNav from "./components/StackNav";
 import {FontAwesome} from '@expo/vector-icons'
 import {setLocalNotification} from './utils/api'
 import { getDecks } from "./utils/api";
+import MyContext from "./components/appContext"
 
-export const MyContext = React.createContext({ killme: "potato"})
 const Tab = createBottomTabNavigator()
 
 class  App extends React.Component {
@@ -26,9 +26,8 @@ class  App extends React.Component {
   }
   updateState = ()=>
   {
-    console.log("updating APP")
 
-    getDecks().then((decks)=> this.setState({decks})).then(()=> console.log("AppState", this.state.decks))
+    getDecks().then((decks)=> this.setState({decks}))
 
   }
   render()

@@ -3,7 +3,7 @@ import {
     ScrollView,
 } from 'react-native'
 import Deck from "./Deck";
-import { MyContext } from "../App"
+import MyContext from "./appContext"
 
 import {getDecks} from '../utils/api'
 
@@ -35,7 +35,6 @@ class DeckList extends Component
                 <ScrollView>
                     {decks && Object.keys(decks).map((deck)=> 
                         {
-                            console.log("TITLE", decks[deck].questions.length)
                             return(<Deck key={deck} update={update} navigation={this.props.navigation} title={deck} cards={decks[deck].questions.length}></Deck>)
                         }
                     )}

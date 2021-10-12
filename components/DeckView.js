@@ -35,7 +35,7 @@ class DeckView extends Component
     componentDidMount()
     {
         this.setState({
-            cards: this.props.cards
+            cards: this.props.route.params.cards
         })
     }
     handleDelete = ()=>
@@ -49,7 +49,7 @@ class DeckView extends Component
     }
     updateCard =()=>
     {
-        
+
         getDeck(this.props.route.params.title).then((deck)=> {
             this.setState({
             cards: deck.questions.length
@@ -59,11 +59,10 @@ class DeckView extends Component
     }
     render()
     {
-        const {title, cards,update} = this.props.route.params
+        const {title, update} = this.props.route.params
         const {navigation} = this.props
-
-        console.log("TITLE SHIT", title)
-
+        const {cards} = this.state
+        console.log("CARDS", cards)
         return(
 
                 <View style={{flex: 1,}}>
@@ -76,9 +75,12 @@ class DeckView extends Component
                         </Text>
                     </View>
                     <View style={{flex: 2, justifyContent:"center", alignItems:"center"}}>
-                        <TouchableOpacity onPress={()=> navigation.navigate("Quiz",{id: title})} style={[styles.btnStyle, styles.centerItem]}>
-                        <Text style={{color: "white"}}>Start Quiz</Text>
-                        </TouchableOpacity>
+                        {
+                            <TouchableOpacity disabled={(cards && cards > 0) ? false : true} onPress={()=> navigation.navigate("Quiz",{id: title})} style={[styles.btnStyle, styles.centerItem]}>
+                            <Text style={{color: "white"}}>Start Quiz</Text>
+                            </TouchableOpacity> 
+                        }
+
                         <TouchableOpacity onPress={()=> navigation.navigate("AddCard",{id: title, update, updateCard: this.updateCard})} style={[styles.btnStyle, styles.centerItem]}>
                             <Text style={{color: "white"}}>AddCard</Text>
                         </TouchableOpacity>
