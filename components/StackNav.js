@@ -7,6 +7,11 @@ import AddCard from './AddCard'
 import DeckView from "./DeckView";
 import Quiz from "./Quiz";
 import NewDeck from "./NewDeck";
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
 
 const Stack = createNativeStackNavigator()
 import {getDecks} from '../utils/api'
