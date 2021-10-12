@@ -41,6 +41,14 @@ const styles = StyleSheet.create({
         height:50,
         margin: 4
 
+    },
+    backBtn:
+    {
+        backgroundColor: "gray",
+        borderRadius: 50,
+        width: 200,
+        height:50,
+        margin: 4
     }
 })
 class Quiz extends Component
@@ -60,6 +68,24 @@ class Quiz extends Component
         getDeck(id).then((id)=>this.setState({
             questions: id.questions
         }))
+    }
+    update =()=>{
+        const {id}= this.props.route.params
+        getDeck(id).then((id)=>this.setState(
+            {
+                index: 0,
+                correct: 0,
+                incorrect: 0,
+                questions: '',
+                toggle: false,
+                showPrecentage: false,
+                questions: id.questions
+            }
+        ))
+    }
+    goBack= ()=>
+    {
+        this.props.navigation.navigate("DeckList")
     }
     nextQC = ()=>
     {
@@ -105,15 +131,15 @@ class Quiz extends Component
             <View style={{flex: 1}}>
                 <View style={{flex: 1, alignSelf:"flex-start"}}>
                     <Text>
-                        {this.state.index +1}/{this.state.questions && this.state.questions.length}
+                        {this.state.index +1} out of {this.state.questions && this.state.questions.length} ({this.state.index +1}/{this.state.questions && this.state.questions.length})
                     </Text>
                 </View>
-                <View  style={[styles.centerItem,{flex: 3}, styles.textStyle]}>
+                <View  style={[styles.centerItem,{flex: 1}, styles.textStyle]}>
                     <TouchableOpacity onPress={()=> this.setState({
                         toggle: !this.state.toggle
                     })}>
                         <Text style={{flex: 1}}>
-                        Question{ this.state.questions && !this.state.toggle && this.state.questions[this.state.index].question }{"\n"}
+                        Question{ this.state.questions &&  this.state.questions[this.state.index].question }{"\n"}
                         Answer:{this.state.questions && this.state.toggle && this.state.questions[this.state.index].answer}
                         </Text>
                     </TouchableOpacity>
@@ -131,6 +157,18 @@ class Quiz extends Component
                         {this.state.showPrecentage && "%" + Math.floor((this.state.correct/(this.state.correct + this.state.incorrect) )* 100)}
                     </Text>
                 </View>
+                {
+                    this.state.showPrecentage && (
+                    <View style={[{flex: 1}, styles.centerItem]}>
+                    <TouchableOpacity  onPress={()=> this.goBack()} style={[styles.backBtn, styles.centerItem]}>
+                            <Text style={{color: "white"}}>Go Back</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity  onPress={()=> this.update() }style={[styles.backBtn, styles.centerItem]}>
+                            <Text style={{color: "white"}}>Restart</Text>
+                    </TouchableOpacity>
+                    </View>
+                    )
+                }
                 <View style={[{flex:1}, styles.centerItem]}>
                 <TouchableOpacity 
                     onPress={()=>this.setState({

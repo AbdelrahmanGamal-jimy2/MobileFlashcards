@@ -18,7 +18,7 @@ class  App extends React.Component {
   }
   componentDidMount()
   {
-    //setLocalNotification()
+    setLocalNotification()
     getDecks().then((decks) => {
       this.setState({decks})
     })
