@@ -26,10 +26,6 @@ class DeckList extends Component
     {
         getDecks().then((decks)=> this.setState({decks}))
     }
-    useFocusEffect()
-    {
-        updateState()
-    }
     render()
     {
         const {decks} = this.state

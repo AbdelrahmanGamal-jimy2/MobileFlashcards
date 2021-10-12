@@ -54,8 +54,7 @@ class NewDeck extends Component
                     title: input,
                     questions: []
                 }
-            }).then(()=> console.log(getDeck(input).then((r)=>console.log(r))))
-            console.log(this.props.route.params)
+            }).then(()=> this.props.route.params.update)
             this.props.navigation.navigate("DeckList")
         }
     }

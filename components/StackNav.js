@@ -13,15 +13,6 @@ import {getDecks} from '../utils/api'
 
 class StackNav extends Component
 {
-    state = {
-        decks: {
-
-        }
-    }
-    componentDidMount()
-    {
-        getDecks().then((decks)=> this.setState({decks}))
-    }
     render()
     {
         return (

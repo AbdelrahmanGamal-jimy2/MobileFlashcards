@@ -13,13 +13,28 @@ import {FontAwesome} from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator()
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen options={{tabBarIcon: () => (<FontAwesome style={{marginBottom: -10}} name="book" size={24} color="black" />)}} name="Home" component={StackNav} />
-        <Tab.Screen options={{tabBarIcon: () => (<FontAwesome style={{marginBottom: -10}} name="plus-square" size={24} color="black" />)}} name="NewDeck" component={NewDeck} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );  
+class  App extends React.Component {
+  state = {
+    decks: {
+
+    }
+  }
+  updateState = ()=>
+  {
+      getDecks().then((decks)=> this.setState({decks}))
+
+  }
+  render()
+  {
+    return (
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen initialParams={{update: this.updateState}} options={{tabBarIcon: () => (<FontAwesome style={{marginBottom: -10}} name="book" size={24} color="black" />)}} name="Home" component={StackNav} />
+          <Tab.Screen initialParams={{update: this.updateState}} options={{tabBarIcon: () => (<FontAwesome style={{marginBottom: -10}} name="book" size={24} color="black" />)}} name="NewDeck" component={NewDeck} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    );  
+  }
 }
+
+export default App
