@@ -55,8 +55,11 @@ class AddCard extends Component
         addCardToDeck({
             question: this.state.question,
             answer: this.state.answer
-        }, this.props.route.params.id)
-        this.props.navigation.pop(1)
+        }, this.props.route.params.id).then(()=>{
+            this.props.route.params.update()
+            this.props.route.params.updateCard()
+            this.props.navigation.pop(1)
+        })
     }
     render()
     {

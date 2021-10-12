@@ -6,6 +6,7 @@ import {
     TextInput,
     StyleSheet
 } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native';
 
 import {saveDeckTitle, getDeck} from '../utils/api.js'
 
@@ -54,6 +55,8 @@ class NewDeck extends Component
                     questions: []
                 }
             }).then(()=> console.log(getDeck(input).then((r)=>console.log(r))))
+            console.log(this.props.route.params)
+            this.props.navigation.navigate("DeckList")
         }
     }
     render()

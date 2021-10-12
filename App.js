@@ -8,16 +8,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Deck from "./components/Deck";
 import StackNav from "./components/StackNav";
+import {FontAwesome} from '@expo/vector-icons'
 
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="StackNav" component={StackNav} />
-        <Tab.Screen name="NewDeck" component={NewDeck} />
+        <Tab.Screen options={{tabBarIcon: () => (<FontAwesome style={{marginBottom: -10}} name="book" size={24} color="black" />)}} name="Home" component={StackNav} />
+        <Tab.Screen options={{tabBarIcon: () => (<FontAwesome style={{marginBottom: -10}} name="plus-square" size={24} color="black" />)}} name="NewDeck" component={NewDeck} />
       </Tab.Navigator>
     </NavigationContainer>
   );  

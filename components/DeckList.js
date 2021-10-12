@@ -13,6 +13,11 @@ class DeckList extends Component
 
         }
     }
+    updateState = ()=>
+    {
+        getDecks().then((decks)=> this.setState({decks}))
+
+    }
     componentDidMount()
     {
         getDecks().then((decks)=> this.setState({decks}))
@@ -20,6 +25,10 @@ class DeckList extends Component
     refresh = ()=>
     {
         getDecks().then((decks)=> this.setState({decks}))
+    }
+    useFocusEffect()
+    {
+        updateState()
     }
     render()
     {
@@ -30,7 +39,7 @@ class DeckList extends Component
                 {decks && Object.keys(decks).map((deck)=> 
                     {
                         console.log(decks[deck].questions.length)
-                        return(<Deck key={deck} navigation ={this.props.navigation }title={deck} cards={decks[deck].questions.length}></Deck>)
+                        return(<Deck key={deck} update={this.updateState}navigation={this.props.navigation}title={deck} cards={decks[deck].questions.length}></Deck>)
                     }
                 )}
             </ScrollView>

@@ -5,7 +5,8 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native'
-import {removeDeck} from '../utils/api'
+import {removeDeck, getDeck} from '../utils/api'
+
 
 const styles = StyleSheet.create({
     textStyle: {
@@ -27,16 +28,39 @@ const styles = StyleSheet.create({
 })
 class DeckView extends Component
 {
+    state=
+    {
+        cards: ''
+    }
+    componentDidMount()
+    {
+        this.setState({
+            cards: this.props.route.params.cards
+        })
+    }
     handleDelete = ()=>
     {
-        const {title} =this.props.route.params
+        const {title,update} =this.props.route.params
         const {navigation} = this.props
-        removeDeck(title)
-        navigation.pop(1)
+        removeDeck(title).then(()=>{
+            update()
+            navigation.pop(1)
+        })
+    }
+    updateCard =()=>
+    {
+        
+        getDeck(this.props.route.params.title).then((deck)=> {
+            console.log(deck.questions)
+            this.setState({
+            cards: deck.questions.length
+        }
+    )}
+    )
     }
     render()
     {
-        const {title, cards} =this.props.route.params
+        const {title, cards,update} =this.props.route.params
         const {navigation} = this.props
         return(
 
@@ -46,14 +70,14 @@ class DeckView extends Component
                             {title}
                         </Text>
                         <Text style={[styles.textStyle]}>
-                            {cards}
+                            {this.state.cards}
                         </Text>
                     </View>
                     <View style={{flex: 2, justifyContent:"center", alignItems:"center"}}>
                         <TouchableOpacity onPress={()=> navigation.navigate("Quiz",{id: title})} style={[styles.btnStyle, styles.centerItem]}>
                         <Text style={{color: "white"}}>Start Quiz</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=> navigation.navigate("AddCard",{id: title})} style={[styles.btnStyle, styles.centerItem]}>
+                        <TouchableOpacity onPress={()=> navigation.navigate("AddCard",{id: title, update, updateCard: this.updateCard})} style={[styles.btnStyle, styles.centerItem]}>
                             <Text style={{color: "white"}}>AddCard</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={()=>this.handleDelete()} style={[styles.btnStyle, styles.centerItem, {backgroundColor: "white"}]}>

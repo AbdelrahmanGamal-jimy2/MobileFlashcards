@@ -6,11 +6,22 @@ import Deck from "./Deck"
 import AddCard from './AddCard'
 import DeckView from "./DeckView";
 import Quiz from "./Quiz";
+import NewDeck from "./NewDeck";
 
 const Stack = createNativeStackNavigator()
+import {getDecks} from '../utils/api'
 
 class StackNav extends Component
 {
+    state = {
+        decks: {
+
+        }
+    }
+    componentDidMount()
+    {
+        getDecks().then((decks)=> this.setState({decks}))
+    }
     render()
     {
         return (
