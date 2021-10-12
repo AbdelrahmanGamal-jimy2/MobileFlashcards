@@ -50,8 +50,6 @@ class AddCard extends Component
     }
     handleAdd = ()=>
     {
-        console.log(this.props.route.params.id)
-        console.log("here")
         addCardToDeck({
             question: this.state.question,
             answer: this.state.answer

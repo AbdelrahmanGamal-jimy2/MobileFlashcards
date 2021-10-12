@@ -51,7 +51,6 @@ class DeckView extends Component
     {
         
         getDeck(this.props.route.params.title).then((deck)=> {
-            console.log(deck.questions)
             this.setState({
             cards: deck.questions.length
         }

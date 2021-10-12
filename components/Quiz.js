@@ -49,7 +49,6 @@ class Quiz extends Component
         getDeck(id).then((id)=>this.setState({
             questions: id.questions
         }))
-        //console.log(id.questions[0].question
     }
     nextQC = ()=>
     {
@@ -67,7 +66,6 @@ class Quiz extends Component
                 this.setState({
                     correct: this.state.correct + 1
                 })
-            console.log("here")
             this.setState({showPrecentage: true})
         }
     }
@@ -86,7 +84,6 @@ class Quiz extends Component
                 this.setState({
                     incorrect: this.state.incorrect + 1
                 })
-            console.log("here")
             this.setState({showPrecentage: true})
         }
     }

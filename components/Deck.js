@@ -32,7 +32,6 @@ class Deck extends Component
     }
     render()
     {
-        console.log(this.props.update)
         const {navigation} =this.props
         return(
             <View style={[styles.centerItem], {flex: 1, borderColor: "black", borderWidth: 0.5, borderRadius: 3, margin:5}}>

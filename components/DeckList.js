@@ -29,12 +29,10 @@ class DeckList extends Component
     render()
     {
         const {decks} = this.state
-        console.log("decks", this.state.decks)
         return(
             <ScrollView>
                 {decks && Object.keys(decks).map((deck)=> 
                     {
-                        console.log(decks[deck].questions.length)
                         return(<Deck key={deck} update={this.updateState}navigation={this.props.navigation}title={deck} cards={decks[deck].questions.length}></Deck>)
                     }
                 )}
