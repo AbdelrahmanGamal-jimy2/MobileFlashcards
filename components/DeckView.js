@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native'
+import {removeDeck} from '../utils/api'
 
 const styles = StyleSheet.create({
     textStyle: {
@@ -26,7 +27,13 @@ const styles = StyleSheet.create({
 })
 class DeckView extends Component
 {
-    
+    handleDelete = ()=>
+    {
+        const {title} =this.props.route.params
+        const {navigation} = this.props
+        removeDeck(title)
+        navigation.pop(1)
+    }
     render()
     {
         const {title, cards} =this.props.route.params
@@ -43,13 +50,13 @@ class DeckView extends Component
                         </Text>
                     </View>
                     <View style={{flex: 2, justifyContent:"center", alignItems:"center"}}>
-                        <TouchableOpacity style={[styles.btnStyle, styles.centerItem]}>
+                        <TouchableOpacity onPress={()=> navigation.navigate("Quiz",{id: title})} style={[styles.btnStyle, styles.centerItem]}>
                         <Text style={{color: "white"}}>Start Quiz</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={()=> navigation.navigate("AddCard",{id: title})} style={[styles.btnStyle, styles.centerItem]}>
                             <Text style={{color: "white"}}>AddCard</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.btnStyle, styles.centerItem, {backgroundColor: "white"}]}>
+                        <TouchableOpacity onPress={()=>this.handleDelete()} style={[styles.btnStyle, styles.centerItem, {backgroundColor: "white"}]}>
                             <Text style={{color: "red"}}>Delete Deck</Text>
                         </TouchableOpacity>
                     </View>

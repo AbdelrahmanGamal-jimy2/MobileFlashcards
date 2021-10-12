@@ -33,3 +33,15 @@ export function getDecks()
 {
     return AsyncStorage.getItem(DECKS_STORAGE_KEY).then((results)=> JSON.parse(results))
 }
+export function removeDeck(id)
+{
+    return AsyncStorage.getItem(DECKS_STORAGE_KEY).then((results)=> {
+        const data = JSON.parse(results)
+        data[id] = undefined
+        delete data[id]
+        AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
+
+
+    }
+    )
+}

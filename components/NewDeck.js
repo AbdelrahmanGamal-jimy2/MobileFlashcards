@@ -65,9 +65,10 @@ class NewDeck extends Component
                     What is the title of your new Deck: {this.state.input}
                 </Text>
                 <TextInput
+                placeholder={"Title"}
                 value={input}
                 onChangeText={this.handleChange}
-                style={[styles.inputText]}
+                style={[styles.inputText,{padding: 5}]}
                 />
                 <View></View>
                 <TouchableOpacity onPress={this.handlePress} style={[styles.btnStyle, styles.centerItem]}>

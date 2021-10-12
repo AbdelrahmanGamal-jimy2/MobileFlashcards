@@ -5,6 +5,7 @@ import DeckList from "./DeckList";
 import Deck from "./Deck"
 import AddCard from './AddCard'
 import DeckView from "./DeckView";
+import Quiz from "./Quiz";
 
 const Stack = createNativeStackNavigator()
 
@@ -17,6 +18,7 @@ class StackNav extends Component
                 <Stack.Screen name="DeckList"  component={DeckList} />
                 <Stack.Screen name="DeckView"  component={DeckView} />
                 <Stack.Screen name="AddCard"  component={AddCard} />
+                <Stack.Screen name="Quiz"  component={Quiz} />
             </Stack.Navigator>
         )
     }

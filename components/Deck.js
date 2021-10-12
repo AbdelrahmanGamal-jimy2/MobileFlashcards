@@ -34,13 +34,13 @@ class Deck extends Component
     {
         const {navigation} =this.props
         return(
-            <View style={[styles.centerItem], {flex: 1, borderColor: "black"}}>
-                <TouchableOpacity style={[styles.centerItem] } onPress={()=>navigation.navigate("DeckView",{title: this.props.title, cards: this.props.cards,navigation})}>
+            <View style={[styles.centerItem], {flex: 1, borderColor: "black", borderWidth: 0.5, borderRadius: 3, margin:5}}>
+                <TouchableOpacity style={[styles.centerItem] } onPress={()=>navigation.navigate("DeckView",{title: this.props.title, cards: this.props.cards, navigation})}>
                             <Text style={[styles.textStyle]}>
                                 {this.props.title}
                             </Text>
                             <Text style={[styles.subText]}>
-                                {this.props.cards}
+                                cards: {this.props.cards}
                             </Text>
                 </TouchableOpacity>
             </View>

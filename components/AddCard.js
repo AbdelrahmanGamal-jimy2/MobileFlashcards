@@ -56,6 +56,7 @@ class AddCard extends Component
             question: this.state.question,
             answer: this.state.answer
         }, this.props.route.params.id)
+        this.props.navigation.pop(1)
     }
     render()
     {
@@ -64,11 +65,13 @@ class AddCard extends Component
             <View style={[{flex: 1}, styles.centerItem]}>
                 <View style={[{flex: 2}, styles.centerItem]}>
                     <TextInput
+                    placeholder=" Enter Your Question" 
                     value={question}
                     onChangeText={this.handleChangeQuestion}
                     style={[styles.inputText]}
                     />
                     <TextInput
+                    placeholder=" Enter Your Answer" 
                     value={answer}
                     onChangeText={this.handleChangeAnswer}
                     style={[styles.inputText]}
