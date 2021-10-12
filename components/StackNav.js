@@ -13,11 +13,15 @@ import {getDecks} from '../utils/api'
 
 class StackNav extends Component
 {
+    componentDidMount()
+    {
+    }
     render()
     {
+
         return (
             <Stack.Navigator screenOptions={{headerShown: false}}>
-                <Stack.Screen name="DeckList"  component={DeckList} />
+                <Stack.Screen  name="DeckList"  component={DeckList} />
                 <Stack.Screen name="DeckView"  component={DeckView} />
                 <Stack.Screen name="AddCard"  component={AddCard} />
                 <Stack.Screen name="Quiz"  component={Quiz} />

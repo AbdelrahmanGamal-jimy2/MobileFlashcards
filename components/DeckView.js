@@ -35,7 +35,7 @@ class DeckView extends Component
     componentDidMount()
     {
         this.setState({
-            cards: this.props.route.params.cards
+            cards: this.props.cards
         })
     }
     handleDelete = ()=>
@@ -59,8 +59,11 @@ class DeckView extends Component
     }
     render()
     {
-        const {title, cards,update} =this.props.route.params
+        const {title, cards,update} = this.props.route.params
         const {navigation} = this.props
+
+        console.log("TITLE SHIT", title)
+
         return(
 
                 <View style={{flex: 1,}}>

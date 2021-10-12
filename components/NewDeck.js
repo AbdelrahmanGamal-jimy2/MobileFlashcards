@@ -7,6 +7,7 @@ import {
     StyleSheet
 } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
+import {MyContext} from "../App"
 
 import {saveDeckTitle, getDeck} from '../utils/api.js'
 
@@ -43,8 +44,9 @@ class NewDeck extends Component
     {
         this.setState(()=>({input}))
     }
-    handlePress = ()=>
+    handlePress = (decks, updateFunc)=>
     {
+        console.log("MY ASS params", updateFunc)
         const {input} = this.state
         if(input)
         {
@@ -54,29 +56,32 @@ class NewDeck extends Component
                     title: input,
                     questions: []
                 }
-            }).then(()=> this.props.route.params.update)
-            this.props.navigation.navigate("DeckList")
+            }).then(()=> updateFunc()).then(()=> this.props.navigation.navigate("DeckList"))
         }
     }
     render()
     {
         const {input} =this.state
         return(
-            <View style={[styles.centerItem,{flex: 1}]}>
-                <Text style={[styles.textStyle, {padding: 50}  ]}>
-                    What is the title of your new Deck: {this.state.input}
-                </Text>
-                <TextInput
-                placeholder={"Title"}
-                value={input}
-                onChangeText={this.handleChange}
-                style={[styles.inputText,{padding: 5}]}
-                />
-                <View></View>
-                <TouchableOpacity onPress={this.handlePress} style={[styles.btnStyle, styles.centerItem]}>
-                    <Text style={{color: "white"}}>Create Deck</Text>
-                </TouchableOpacity>
-            </View>
+            <MyContext.Consumer>
+                {({ decks, update }) => (
+                <View style={[styles.centerItem,{flex: 1}]}>
+                    <Text style={[styles.textStyle, {padding: 50}  ]}>
+                        What is the title of your new Deck: {this.state.input}
+                    </Text>
+                    <TextInput
+                    placeholder={"Title"}
+                    value={input}
+                    onChangeText={this.handleChange}
+                    style={[styles.inputText,{padding: 5}]}
+                    />
+                    <View></View>
+                    <TouchableOpacity onPress={() => this.handlePress(decks, update)} style={[styles.btnStyle, styles.centerItem]}>
+                        <Text style={{color: "white"}}>Create Deck</Text>
+                    </TouchableOpacity>
+                </View>
+                )}
+            </MyContext.Consumer>
         )
     }
 }

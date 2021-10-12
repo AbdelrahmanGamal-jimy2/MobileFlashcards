@@ -3,6 +3,7 @@ import {
     ScrollView,
 } from 'react-native'
 import Deck from "./Deck";
+import { MyContext } from "../App"
 
 import {getDecks} from '../utils/api'
 
@@ -28,15 +29,19 @@ class DeckList extends Component
     }
     render()
     {
-        const {decks} = this.state
         return(
-            <ScrollView>
-                {decks && Object.keys(decks).map((deck)=> 
-                    {
-                        return(<Deck key={deck} update={this.updateState}navigation={this.props.navigation}title={deck} cards={decks[deck].questions.length}></Deck>)
-                    }
+            <MyContext.Consumer>
+                {({decks, update}) => (
+                <ScrollView>
+                    {decks && Object.keys(decks).map((deck)=> 
+                        {
+                            console.log("TITLE", decks[deck].questions.length)
+                            return(<Deck key={deck} update={update} navigation={this.props.navigation} title={deck} cards={decks[deck].questions.length}></Deck>)
+                        }
+                    )}
+                </ScrollView>
                 )}
-            </ScrollView>
+            </MyContext.Consumer>
         )
     }
 }

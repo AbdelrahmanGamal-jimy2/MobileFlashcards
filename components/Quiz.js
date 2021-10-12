@@ -32,6 +32,15 @@ const styles = StyleSheet.create({
         width: 200,
         height:50,
         margin: 4
+    },
+    answerBtn:
+    {
+        backgroundColor: "blue",
+        borderRadius: 50,
+        width: 200,
+        height:50,
+        margin: 4
+
     }
 })
 class Quiz extends Component
@@ -121,6 +130,15 @@ class Quiz extends Component
                     <Text>
                         {this.state.showPrecentage && "%" + Math.floor((this.state.correct/(this.state.correct + this.state.incorrect) )* 100)}
                     </Text>
+                </View>
+                <View style={[{flex:1}, styles.centerItem]}>
+                <TouchableOpacity 
+                    onPress={()=>this.setState({
+                        toggle: !this.state.toggle
+                    })}
+                    style={[styles.answerBtn, styles.centerItem]}>
+                            <Text style={{color: "white"}}>ShowAnswer</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )

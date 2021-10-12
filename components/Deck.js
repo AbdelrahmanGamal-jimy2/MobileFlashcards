@@ -33,6 +33,7 @@ class Deck extends Component
     render()
     {
         const {navigation} =this.props
+        console.log("DECK PROPS", this.props)
         return(
             <View style={[styles.centerItem], {flex: 1, borderColor: "black", borderWidth: 0.5, borderRadius: 3, margin:5}}>
                 <TouchableOpacity style={[styles.centerItem] } onPress={()=>navigation.navigate("DeckView",{title: this.props.title, cards: this.props.cards, navigation,update: this.props.update})}>
